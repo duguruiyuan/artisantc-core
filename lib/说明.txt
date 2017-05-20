@@ -1,0 +1,2 @@
+1、这里存放的是第三方jar，并且是无法在maven仓库中找到的。
+2、目前存放的有“支付宝”提供的SDK的jar的源代码，编译好的jar在“/src/main/webapp/WEB-INF/lib”下。

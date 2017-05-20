@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d %level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 文件输出 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- window平台的日志会放在tomcat/bin/logs下边：linux平台的日志会放在tomcat/logs 下边 -->
+        <file>../logs/aatc-core.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 每日自动滚动 -->
+            <fileNamePattern>../logs/aatc-core.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 日志保存的历史天数 -->
+            <maxHistory>90</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d %level %logger - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!--
+      - 日志级别，可以对应到具体的package。
+      -->
+    <!-- 本系统的日志 -->
+    <logger name="cn.artisantc" level="DEBUG"/>
+
+    <!-- Spring的日志 -->
+    <logger name="org.springframework.beans" level="INFO"/>
+    <logger name="org.springframework.orm" level="INFO"/>
+    <logger name="org.springframework.aop" level="INFO"/>
+    <logger name="org.springframework.web" level="INFO"/>
+
+    <!-- Hibernate的日志 -->
+    <logger name="org.hibernate.persister" level="INFO"/>
+    <logger name="org.hibernate.loader" level="INFO"/>
+    <logger name="org.hibernate.tool" level="WARN"/>
+
+    <!--
+      - 总体设置日志级别的输出方式。
+      -->
+    <root level="DEBUG">
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+    <root level="WARN">
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
